@@ -19,20 +19,20 @@ SWA_WP combines the familiar content management experience of WordPress with the
 
 ```bash
 # Install SWA_WP (coming soon)
-npm install -g swa_wp
+npm install -g swa-wp
 
 # Create a new site
-swa_wp init my-site
+swa-wp init my-site
 cd my-site
 
 # Start development server
-swa_wp serve
+swa-wp serve
 
 # Build for production
-swa_wp build
+swa-wp build
 
 # Deploy to GitHub Pages
-swa_wp deploy --github
+swa-wp deploy --github
 ```
 
 ## 🏗️ Architecture
@@ -46,7 +46,7 @@ SWA_WP follows a static site generator approach:
 
 ```
 Git Repository → Build Process → Static Output → Deployment
-(Markdown files)  (swa_wp build)  (HTML/CSS/JS)   (Git Pages)
+(Markdown files)  (swa-wp build)  (HTML/CSS/JS)   (Git Pages)
 ```
 
 ## 📁 Project Structure
@@ -62,7 +62,7 @@ my-site/
 ├── plugins/             # Custom plugins
 ├── config/              # Configuration files
 ├── output/              # Generated static site
-└── swa_wp.json         # Main configuration
+└── swa-wp.json         # Main configuration
 ```
 
 ## 🎯 Use Cases
@@ -75,7 +75,7 @@ my-site/
 
 ## 🔧 Configuration
 
-Configure your site in `swa_wp.json`:
+Configure your site in `swa-wp.json`:
 
 ```json
 {

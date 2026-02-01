@@ -225,7 +225,7 @@ All content, configuration, and assets are stored in a Git repository, providing
 │   ├── site.json       # Site-wide configuration
 │   └── navigation.json # Menu structure
 ├── output/              # Generated static files (gitignored)
-└── swa_wp.json         # Main configuration file
+└── swa-wp.json         # Main configuration file
 ```
 
 ### Content Format: Markdown with Frontmatter
@@ -249,7 +249,7 @@ Your markdown content here...
 
 ### Configuration Format: JSON
 
-**swa_wp.json** (Main Configuration)
+**swa-wp.json** (Main Configuration)
 ```json
 {
   "site": {
@@ -290,10 +290,10 @@ Your markdown content here...
 1. **Setup**
    ```bash
    # Install SWA_WP
-   npm install -g swa_wp
+   npm install -g swa-wp
    
    # Initialize new site
-   swa_wp init my-site
+   swa-wp init my-site
    cd my-site
    
    # Install dependencies
@@ -303,22 +303,22 @@ Your markdown content here...
 2. **Development**
    ```bash
    # Start development server with live reload
-   swa_wp serve
+   swa-wp serve
    
    # Create new post
-   swa_wp new post "My Post Title"
+   swa-wp new post "My Post Title"
    
    # Create new page
-   swa_wp new page "About"
+   swa-wp new page "About"
    ```
 
 3. **Build**
    ```bash
    # Build for production
-   swa_wp build
+   swa-wp build
    
    # Build with specific environment
-   swa_wp build --env production
+   swa-wp build --env production
    ```
 
 ### Build Process
@@ -356,7 +356,7 @@ Your markdown content here...
 #### GitHub Pages
 ```bash
 # Deploy to GitHub Pages
-swa_wp deploy --github
+swa-wp deploy --github
 
 # Or via GitHub Actions (automated)
 ```
@@ -374,8 +374,8 @@ jobs:
       - uses: actions/checkout@v2
       - name: Build site
         run: |
-          npm install -g swa_wp
-          swa_wp build
+          npm install -g swa-wp
+          swa-wp build
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
@@ -387,7 +387,7 @@ jobs:
 ```bash
 # netlify.toml
 [build]
-  command = "swa_wp build"
+  command = "swa-wp build"
   publish = "output"
 ```
 
@@ -395,7 +395,7 @@ jobs:
 ```bash
 # vercel.json
 {
-  "buildCommand": "swa_wp build",
+  "buildCommand": "swa-wp build",
   "outputDirectory": "output"
 }
 ```
@@ -403,7 +403,7 @@ jobs:
 #### Custom Server
 ```bash
 # Build and rsync to server
-swa_wp build
+swa-wp build
 rsync -avz output/ user@server:/var/www/html/
 ```
 
@@ -562,12 +562,12 @@ module.exports = {
 
 Plugins are loaded from:
 1. `/plugins` directory (local plugins)
-2. `node_modules/swa_wp-plugin-*` (npm packages)
+2. `node_modules/swa-wp-plugin-*` (npm packages)
 3. Configuration file `plugins` array
 
 #### Plugin Configuration
 
-Plugins can have their own configuration in `swa_wp.json`:
+Plugins can have their own configuration in `swa-wp.json`:
 
 ```json
 {
