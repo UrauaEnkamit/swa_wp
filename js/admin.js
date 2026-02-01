@@ -174,6 +174,27 @@ function setupExport() {
     });
 }
 
+function validatePost(post) {
+    // Validate required fields
+    if (!post.id || !post.title || !post.slug || !post.content || !post.author || !post.date) {
+        return false;
+    }
+    
+    // Validate types
+    if (typeof post.id !== 'number' || typeof post.title !== 'string' || 
+        typeof post.slug !== 'string' || typeof post.content !== 'string' ||
+        typeof post.author !== 'string' || typeof post.date !== 'string') {
+        return false;
+    }
+    
+    // Validate tags if present
+    if (post.tags && !Array.isArray(post.tags)) {
+        return false;
+    }
+    
+    return true;
+}
+
 function setupImport() {
     const importFile = document.getElementById('import-file');
     
@@ -186,8 +207,22 @@ function setupImport() {
             try {
                 const posts = JSON.parse(event.target.result);
                 if (Array.isArray(posts)) {
-                    if (confirm(`This will import ${posts.length} posts. Continue?`)) {
-                        savePosts(posts);
+                    // Validate all posts
+                    const validPosts = posts.filter(validatePost);
+                    
+                    if (validPosts.length === 0) {
+                        alert('No valid posts found in the file');
+                        return;
+                    }
+                    
+                    if (validPosts.length < posts.length) {
+                        if (!confirm(`Found ${validPosts.length} valid posts out of ${posts.length}. Import valid posts only?`)) {
+                            return;
+                        }
+                    }
+                    
+                    if (confirm(`This will import ${validPosts.length} posts. Continue?`)) {
+                        savePosts(validPosts);
                         displayPostsList();
                         alert('Posts imported successfully!');
                     }

@@ -1,5 +1,12 @@
 // Post page script
 
+// HTML sanitization function for non-HTML fields
+function escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+}
+
 function getPosts() {
     const posts = localStorage.getItem('blog_posts');
     return posts ? JSON.parse(posts) : [];
@@ -41,13 +48,13 @@ function displayPost() {
     document.title = `${post.title} - My WordPress-like Site`;
     
     document.getElementById('post-content').innerHTML = `
-        <h1>${post.title}</h1>
+        <h1>${escapeHtml(post.title)}</h1>
         <div class="post-meta">
-            By ${post.author} on ${formatDate(post.date)}
+            By ${escapeHtml(post.author)} on ${formatDate(post.date)}
         </div>
         ${post.tags && post.tags.length > 0 ? `
             <div class="post-tags">
-                ${post.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                ${post.tags.map(tag => `<span class="tag">${escapeHtml(tag)}</span>`).join('')}
             </div>
         ` : ''}
         <div class="post-body">

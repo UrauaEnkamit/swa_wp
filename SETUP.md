@@ -45,6 +45,13 @@ This system uses:
 - **localStorage** - Posts are stored in your browser's local storage
 - **Client-side rendering** - All content is dynamically loaded via JavaScript
 
+## Security
+
+- **HTML Sanitization**: Titles, authors, excerpts, and tags are automatically sanitized to prevent XSS attacks
+- **Content Field**: The content field supports HTML by design. Only add content from trusted sources
+- **Import Validation**: Imported JSON files are validated before being added to the system
+- **No Server**: Being client-side only eliminates many server-side security concerns
+
 ## Usage Guide
 
 ### Creating a Post

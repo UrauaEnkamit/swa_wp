@@ -1,5 +1,12 @@
 // Main application script for the home page
 
+// HTML sanitization function
+function escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+}
+
 // Initialize posts storage
 function getPosts() {
     const posts = localStorage.getItem('blog_posts');
@@ -57,14 +64,14 @@ function displayPosts(posts) {
     
     container.innerHTML = posts.map(post => `
         <article class="post-card">
-            <h2><a href="post.html?id=${post.id}">${post.title}</a></h2>
+            <h2><a href="post.html?id=${post.id}">${escapeHtml(post.title)}</a></h2>
             <div class="post-meta">
-                By ${post.author} on ${formatDate(post.date)}
+                By ${escapeHtml(post.author)} on ${formatDate(post.date)}
             </div>
-            <p class="post-excerpt">${post.excerpt}</p>
+            <p class="post-excerpt">${escapeHtml(post.excerpt)}</p>
             ${post.tags && post.tags.length > 0 ? `
                 <div class="post-tags">
-                    ${post.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                    ${post.tags.map(tag => `<span class="tag">${escapeHtml(tag)}</span>`).join('')}
                 </div>
             ` : ''}
             <a href="post.html?id=${post.id}" class="read-more">Read More &rarr;</a>
