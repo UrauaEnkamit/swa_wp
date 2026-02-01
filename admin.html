@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - My WordPress-like Site</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1 class="site-title">Admin Panel</h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="admin.html">Admin</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="admin-panel">
+            <h2>Create/Edit Post</h2>
+            <form id="post-form">
+                <div class="form-group">
+                    <label for="post-title">Title</label>
+                    <input type="text" id="post-title" required>
+                </div>
+                <div class="form-group">
+                    <label for="post-slug">Slug (URL-friendly)</label>
+                    <input type="text" id="post-slug" required>
+                </div>
+                <div class="form-group">
+                    <label for="post-excerpt">Excerpt</label>
+                    <textarea id="post-excerpt" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="post-content">Content (HTML supported)</label>
+                    <textarea id="post-content" rows="10" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="post-author">Author</label>
+                    <input type="text" id="post-author" value="Admin">
+                </div>
+                <div class="form-group">
+                    <label for="post-tags">Tags (comma-separated)</label>
+                    <input type="text" id="post-tags" placeholder="wordpress, github-pages, tutorial">
+                </div>
+                <button type="submit" class="btn btn-primary">Save Post</button>
+            </form>
+
+            <h2>Existing Posts</h2>
+            <div id="posts-list" class="posts-list">
+                <!-- Posts will be loaded here -->
+            </div>
+
+            <div class="export-import">
+                <h2>Export/Import</h2>
+                <button id="export-btn" class="btn">Export All Posts (JSON)</button>
+                <div class="form-group">
+                    <label for="import-file">Import Posts (JSON)</label>
+                    <input type="file" id="import-file" accept=".json">
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 My WordPress-like Site. Powered by GitHub Pages.</p>
+        </div>
+    </footer>
+
+    <script src="js/admin.js"></script>
+</body>
+</html>
